@@ -23,7 +23,14 @@ func main() {
 		Schema:     &schema,
 		Playground: true,
 		ResultCallbackFn: func(ctx context.Context, params *graphql.Params, result *graphql.Result, responseBody []byte) {
-			lumber.Success("Responded to request")
+			if ctx.Err() != nil {
+				lumber.Error(err, "Failed to respond to request")
+			} else {
+				if result.HasErrors() {
+					lumber.Info("Responded to request that had errors")
+				}
+				lumber.Success("Responded to request")
+			}
 		},
 	})
 
