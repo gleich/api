@@ -1,4 +1,4 @@
-package schema
+package core
 
 import (
 	"time"
@@ -19,7 +19,7 @@ func est() *time.Location {
 	return loc
 }
 
-var bdayType = graphql.NewObject(
+var BdayType = graphql.NewObject(
 	graphql.ObjectConfig{
 		Description: "My birthday",
 		Name:        "Birthday",

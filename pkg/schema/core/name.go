@@ -1,8 +1,8 @@
-package schema
+package core
 
 import "github.com/graphql-go/graphql"
 
-var nameType = graphql.NewObject(
+var NameType = graphql.NewObject(
 	graphql.ObjectConfig{
 		Description: "My name",
 		Name:        "Name",
