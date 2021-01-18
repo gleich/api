@@ -12,4 +12,11 @@ var Fields = graphql.Fields{
 			return "", nil
 		},
 	},
+	"bday": &graphql.Field{
+		Description: "My birthday",
+		Type:        bdayType,
+		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+			return "", nil
+		},
+	},
 }
