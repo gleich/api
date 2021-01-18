@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"net/http"
 
 	"github.com/Matt-Gleich/api/pkg/schema"
@@ -10,7 +11,10 @@ import (
 )
 
 func main() {
-	rootQuery := graphql.ObjectConfig{Name: "RootQuery", Fields: schema.Fields}
+	rootQuery := graphql.ObjectConfig{
+		Name:   "RootQuery",
+		Fields: schema.Fields,
+	}
 	schemaConfig := graphql.SchemaConfig{Query: graphql.NewObject(rootQuery)}
 	schema, err := graphql.NewSchema(schemaConfig)
 	lumber.Fatal(err, "Failed to create new schema")
@@ -18,6 +22,9 @@ func main() {
 	h := handler.New(&handler.Config{
 		Schema:     &schema,
 		Playground: true,
+		ResultCallbackFn: func(ctx context.Context, params *graphql.Params, result *graphql.Result, responseBody []byte) {
+			lumber.Success("Responded to request")
+		},
 	})
 
 	http.Handle("/", h)
