@@ -3,34 +3,24 @@ package main
 import (
 	"net/http"
 
+	"github.com/Matt-Gleich/api/pkg/schema"
 	"github.com/Matt-Gleich/lumber"
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
 )
 
 func main() {
-	fields := graphql.Fields{
-		"last_name": &graphql.Field{
-			Type: graphql.String,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				lumber.Info("Responding to last_name field")
-				return "Gleich", nil
-			},
-		},
-	}
-
-	rootQuery := graphql.ObjectConfig{Name: "RootQuery", Fields: fields}
+	rootQuery := graphql.ObjectConfig{Name: "RootQuery", Fields: schema.Fields}
 	schemaConfig := graphql.SchemaConfig{Query: graphql.NewObject(rootQuery)}
 	schema, err := graphql.NewSchema(schemaConfig)
 	lumber.Fatal(err, "Failed to create new schema")
 
 	h := handler.New(&handler.Config{
-		Schema:   &schema,
-		Pretty:   false,
-		GraphiQL: true,
+		Schema:     &schema,
+		Playground: true,
 	})
 
-	http.Handle("/graphql", h)
+	http.Handle("/", h)
 	err = http.ListenAndServe(":8080", nil)
 	lumber.Fatal(err, "Failed to listen and serve for requests")
 }
