@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	bday = time.Date(2004, time.April, 8, 4, 13, 0, 0, time.UTC).In(est())
+	bday = time.Date(2004, time.April, 9, 5, 14, 0, 0, time.UTC).In(est())
 	now  = time.Now().In(est())
 )
 
@@ -49,7 +49,7 @@ var BdayType = graphql.NewObject(
 				Description: "The date of my next birthday",
 				Type:        graphql.DateTime,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return time.Date(now.Year(), time.April, 8, 0, 0, 0, 1, time.UTC).In(est()), nil
+					return time.Date(now.Year(), time.April, 9, 0, 0, 0, 0, time.UTC).In(est()), nil
 				},
 			},
 		},
