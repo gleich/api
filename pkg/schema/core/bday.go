@@ -3,21 +3,13 @@ package core
 import (
 	"time"
 
-	"github.com/Matt-Gleich/lumber"
 	"github.com/graphql-go/graphql"
 )
 
 var (
-	bday = time.Date(2004, time.April, 9, 5, 14, 0, 0, time.UTC).In(est())
-	now  = time.Now().In(est())
+	bday = time.Date(2004, time.April, 9, 5, 14, 0, 0, time.Local)
+	now  = time.Now().Local()
 )
-
-// Get the Eastern Standard Timezone
-func est() *time.Location {
-	loc, err := time.LoadLocation("EST")
-	lumber.Error(err, "Failed to get EST timezone for birthday date")
-	return loc
-}
 
 var BdayType = graphql.NewObject(
 	graphql.ObjectConfig{
@@ -49,7 +41,7 @@ var BdayType = graphql.NewObject(
 				Description: "The date of my next birthday",
 				Type:        graphql.DateTime,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return time.Date(now.Year(), time.April, 9, 0, 0, 0, 0, time.UTC).In(est()), nil
+					return time.Date(now.Year(), time.April, 9, 0, 0, 0, 0, time.Local), nil
 				},
 			},
 		},
