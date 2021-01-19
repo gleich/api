@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/Matt-Gleich/lumber"
+	"github.com/didip/tollbooth"
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
 )
@@ -26,7 +27,7 @@ func Run(s graphql.Schema) {
 		},
 	})
 
-	http.Handle("/", h)
+	http.Handle("/", tollbooth.LimitFuncHandler(tollbooth.NewLimiter(1, nil), h.ServeHTTP))
 	err := http.ListenAndServe(":8080", nil)
 	lumber.Fatal(err, "Failed to listen and serve for requests")
 }
