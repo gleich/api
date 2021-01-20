@@ -17,28 +17,28 @@ var BdayType = graphql.NewObject(
 		Name:        "Birthday",
 		Fields: graphql.Fields{
 			"date": &graphql.Field{
-				Description: "The date of my birthday",
+				Description: "Date of my birthday",
 				Type:        graphql.DateTime,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					return bday, nil
 				},
 			},
 			"age": &graphql.Field{
-				Description: "My age in years",
+				Description: "Age in years",
 				Type:        graphql.Int,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					return time.Since(bday).Hours() / 8760, nil
 				},
 			},
 			"isBirthday": &graphql.Field{
-				Description: "My age in hours",
+				Description: "If today is my birthday",
 				Type:        graphql.Boolean,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					return now.Day() == 8 && now.Month() == time.April, nil
 				},
 			},
 			"nextBirthday": &graphql.Field{
-				Description: "The date of my next birthday",
+				Description: "Date of my next birthday",
 				Type:        graphql.DateTime,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					return time.Date(now.Year(), time.April, 8, 0, 0, 0, 0, time.Local), nil

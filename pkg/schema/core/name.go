@@ -8,21 +8,21 @@ var NameType = graphql.NewObject(
 		Name:        "Name",
 		Fields: graphql.Fields{
 			"last": &graphql.Field{
-				Description: "My last name",
+				Description: "Last name",
 				Type:        graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					return "Gleich", nil
 				},
 			},
 			"first": &graphql.Field{
-				Description: "My first name",
+				Description: "First name",
 				Type:        graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					return "Matt", nil
 				},
 			},
 			"full": &graphql.Field{
-				Description: "My full name",
+				Description: "Full name",
 				Type:        graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					return "Matt Gleich", nil

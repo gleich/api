@@ -7,14 +7,14 @@ import (
 
 var Fields = graphql.Fields{
 	"name": &graphql.Field{
-		Description: "My name",
+		Description: "Name",
 		Type:        core.NameType,
 		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 			return "", nil
 		},
 	},
 	"bday": &graphql.Field{
-		Description: "My birthday",
+		Description: "Birthday",
 		Type:        core.BdayType,
 		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 			return "", nil

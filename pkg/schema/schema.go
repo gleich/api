@@ -8,7 +8,7 @@ import (
 // Initialize the schema
 func Init() graphql.Schema {
 	rootQuery := graphql.ObjectConfig{
-		Name:   "RootQuery",
+		Name:   "root",
 		Fields: Fields,
 	}
 	schemaConfig := graphql.SchemaConfig{Query: graphql.NewObject(rootQuery)}
