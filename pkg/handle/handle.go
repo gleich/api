@@ -3,11 +3,9 @@ package handle
 import (
 	"context"
 	"net/http"
-	"time"
 
 	"github.com/Matt-Gleich/lumber"
 	"github.com/didip/tollbooth"
-	"github.com/didip/tollbooth/limiter"
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
 )
@@ -29,7 +27,7 @@ func Run(s graphql.Schema) {
 		},
 	})
 
-	http.Handle("/", tollbooth.LimitFuncHandler(tollbooth.NewLimiter(10, &limiter.ExpirableOptions{DefaultExpirationTTL: time.Hour}), h.ServeHTTP))
+	http.Handle("/", tollbooth.LimitFuncHandler(tollbooth.NewLimiter(1, nil), h.ServeHTTP))
 	err := http.ListenAndServe(":80", nil)
 	lumber.Fatal(err, "Failed to listen and serve for requests")
 }
