@@ -7,7 +7,7 @@
 ![build](https://github.com/Matt-Gleich/api/workflows/build/badge.svg)
 ![test](https://github.com/Matt-Gleich/api/workflows/test/badge.svg)
 ![lint](https://github.com/Matt-Gleich/api/workflows/lint/badge.svg)
-![release](https://github.com/Matt-Gleich/api/workflows/release/badge.svg)
+![deploy](https://github.com/Matt-Gleich/api/workflows/deploy/badge.svg)
 
 ## 🙌 Contributing
 
