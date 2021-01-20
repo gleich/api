@@ -30,6 +30,6 @@ func Run(s graphql.Schema) {
 	})
 
 	http.Handle("/", tollbooth.LimitFuncHandler(tollbooth.NewLimiter(10, &limiter.ExpirableOptions{DefaultExpirationTTL: time.Hour}), h.ServeHTTP))
-	err := http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":80", nil)
 	lumber.Fatal(err, "Failed to listen and serve for requests")
 }
