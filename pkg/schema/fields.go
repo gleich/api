@@ -20,11 +20,4 @@ var Fields = graphql.Fields{
 			return "", nil
 		},
 	},
-	"availableForHire": &graphql.Field{
-		Description: "Can you hire Matthew Gleich?",
-		Type:        graphql.Boolean,
-		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-			return true, nil
-		},
-	},
 }
