@@ -27,7 +27,7 @@ func Run(s graphql.Schema) {
 		},
 	})
 
-	http.Handle("/", tollbooth.LimitFuncHandler(tollbooth.NewLimiter(1, nil), h.ServeHTTP))
+	http.Handle("/", tollbooth.LimitFuncHandler(tollbooth.NewLimiter(10, nil), h.ServeHTTP))
 	err := http.ListenAndServe(":80", nil)
 	lumber.Fatal(err, "Failed to listen and serve for requests")
 }
