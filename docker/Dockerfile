@@ -12,9 +12,16 @@ WORKDIR /usr/src/app
 RUN go get -v -t -d ./...
 
 # Build the app
-RUN go build -o app .
+RUN go build -o api ./cmd/api
 
 # hadolint ignore=DL3006,DL3007
 FROM alpine:latest
-COPY --from=builder /usr/src/app/app .
-CMD ["./app"]
+
+# Set timezone to EST
+ENV TZ=America/New_York
+RUN apk update && apk add tzdata==2020f-r0 --no-cache
+RUN echo "America/New_York" > /etc/timezone
+
+COPY --from=builder /usr/src/app/api .
+
+CMD ["./api"]
