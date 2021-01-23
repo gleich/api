@@ -20,7 +20,7 @@ func Run(s graphql.Schema) {
 				lumber.Error(ctx.Err(), "Failed to respond to request")
 			} else {
 				if result.HasErrors() {
-					lumber.Info("Responded to request that had errors")
+					lumber.Info("Request had errors")
 				}
 				lumber.Success("Responded to request")
 			}
