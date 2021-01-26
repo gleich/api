@@ -8,6 +8,7 @@ import (
 
 func main() {
 	lumber.Info("Started up server")
+	// db.Connect()
 	s := schema.Init()
 	handle.Run(s)
 }
