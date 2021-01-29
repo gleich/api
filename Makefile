@@ -3,7 +3,7 @@
 ##########
 
 build-docker-prod:
-	docker build -f docker/Dockerfile -t mattgleich/api:latest .
+	docker build -f docker/prod.Dockerfile -t mattgleich/api:latest .
 build-docker-dev:
 	docker build -f docker/dev.Dockerfile -t mattgleich/api:dev .
 build-docker-dev-test:
@@ -26,7 +26,7 @@ lint-gomod:
 	git diff --exit-code go.mod
 	git diff --exit-code go.sum
 lint-hadolint:
-	hadolint docker/Dockerfile
+	hadolint docker/prod.Dockerfile
 	hadolint docker/dev.Dockerfile
 	hadolint docker/dev.test.Dockerfile
 	hadolint docker/dev.lint.Dockerfile
