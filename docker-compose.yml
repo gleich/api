@@ -10,7 +10,7 @@ services:
     ports:
       - '80:80'
     environment:
-      DB_URL: 'postgres://postgres:password@db:5432/api'
+      DB_URL: 'postgres://postgres:password@postgres:5432/api'
   postgres:
     image: postgres
     volumes:

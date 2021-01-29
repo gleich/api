@@ -34,4 +34,6 @@ func Connect() {
 	// Verifying connection to database
 	err = db.Ping()
 	lumber.Error(err, "Failed to connect to database")
+
+	lumber.Info("Connected to database")
 }
