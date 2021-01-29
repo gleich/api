@@ -43,6 +43,14 @@ test-go:
 test-in-docker: build-docker-dev-test
 	docker run mattgleich/api:test
 
+
+###################
+# Local Development
+###################
+
+dev-start:
+	docker-compose up -d postgres && docker-compose up -d pgweb && docker-compose up api
+
 ##########
 # Grouping
 ##########
