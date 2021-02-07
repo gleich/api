@@ -39,7 +39,7 @@ type socialMediaAccount struct {
 var SocialsType = graphql.NewObject(
 	graphql.ObjectConfig{
 		Description: "Social Media accounts",
-		Name:        "socials",
+		Name:        "Socials",
 		Fields: graphql.Fields{
 			"twitter": &graphql.Field{
 				Description: "Home of my crappy tweets/retweets",
