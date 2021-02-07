@@ -49,7 +49,14 @@ test-in-docker: build-docker-dev-test
 ###################
 
 dev-start:
-	docker-compose up -d postgres && docker-compose up -d pgweb && docker-compose up api
+	docker-compose up -d postgres
+	docker-compose up -d pgweb
+	docker-compose up api
+
+dev-reset:
+	docker-compose down
+	docker system prune -a
+
 
 ##########
 # Grouping
@@ -63,3 +70,5 @@ local-lint: lint-golangci lint-hadolint lint-gomod
 docker-lint: lint-in-docker
 # Build
 local-build: build-docker-prod build-docker-dev-test build-docker-dev-lint build-docker-dev
+# Local development
+dev-reboot: dev-reset dev-start
