@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/Matt-Gleich/api/pkg/db"
 	"github.com/Matt-Gleich/api/pkg/handle"
 	"github.com/Matt-Gleich/api/pkg/schema"
 	"github.com/Matt-Gleich/lumber"
@@ -8,7 +9,7 @@ import (
 
 func main() {
 	lumber.Info("Started up server")
-	// db.Connect()
+	db.Connect()
 	s := schema.Init()
 	handle.Run(s)
 }
