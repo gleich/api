@@ -18,6 +18,9 @@ var AccountType = graphql.NewObject(
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					var followers int
 					err := db.DB.QueryRow(fmt.Sprintf("SELECT followers FROM %v;", accountTable)).Scan(&followers)
+					if err != nil {
+						return 0, nil
+					}
 					return followers, err
 				},
 			},
@@ -27,6 +30,9 @@ var AccountType = graphql.NewObject(
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					var email string
 					err := db.DB.QueryRow(fmt.Sprintf("SELECT email FROM %v;", accountTable)).Scan(&email)
+					if err != nil {
+						return "", nil
+					}
 					return email, err
 				},
 			},
@@ -36,6 +42,9 @@ var AccountType = graphql.NewObject(
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					var username string
 					err := db.DB.QueryRow(fmt.Sprintf("SELECT username FROM %v;", accountTable)).Scan(&username)
+					if err != nil {
+						return "", nil
+					}
 					return username, err
 				},
 			},
@@ -45,6 +54,9 @@ var AccountType = graphql.NewObject(
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					var repos int
 					err := db.DB.QueryRow(fmt.Sprintf("SELECT repos FROM %v;", accountTable)).Scan(&repos)
+					if err != nil {
+						return 0, nil
+					}
 					return repos, err
 				},
 			},
@@ -54,6 +66,9 @@ var AccountType = graphql.NewObject(
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					var contributions int
 					err := db.DB.QueryRow(fmt.Sprintf("SELECT contributions FROM %v;", accountTable)).Scan(&contributions)
+					if err != nil {
+						return 0, nil
+					}
 					return contributions, err
 				},
 			},
@@ -63,6 +78,9 @@ var AccountType = graphql.NewObject(
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					var hireable bool
 					err := db.DB.QueryRow(fmt.Sprintf("SELECT hireable FROM %v;", accountTable)).Scan(&hireable)
+					if err != nil {
+						return true, nil
+					}
 					return hireable, err
 				},
 			},
@@ -72,6 +90,9 @@ var AccountType = graphql.NewObject(
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					var location string
 					err := db.DB.QueryRow(fmt.Sprintf("SELECT location FROM %v;", accountTable)).Scan(&location)
+					if err != nil {
+						return "", nil
+					}
 					return location, err
 				},
 			},
@@ -81,6 +102,9 @@ var AccountType = graphql.NewObject(
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					var organizations string
 					err := db.DB.QueryRow(fmt.Sprintf("SELECT organizations FROM %v;", accountTable)).Scan(&organizations)
+					if err != nil {
+						return "", nil
+					}
 					return organizations, err
 				},
 			},
@@ -90,6 +114,9 @@ var AccountType = graphql.NewObject(
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					var website string
 					err := db.DB.QueryRow(fmt.Sprintf("SELECT website FROM %v;", accountTable)).Scan(&website)
+					if err != nil {
+						return "", nil
+					}
 					return website, err
 				},
 			},
@@ -99,6 +126,9 @@ var AccountType = graphql.NewObject(
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					var company string
 					err := db.DB.QueryRow(fmt.Sprintf("SELECT company FROM %v;", accountTable)).Scan(&company)
+					if err != nil {
+						return "", nil
+					}
 					return company, err
 				},
 			},
