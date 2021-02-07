@@ -11,6 +11,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// Database
 var DB *sql.DB
 
 // Connect to the database
