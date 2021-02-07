@@ -13,8 +13,6 @@ services:
       DB_URL: 'postgres://postgres:password@postgres:5432/api'
   postgres:
     image: postgres
-    volumes:
-      - 'db_volume:/var/lib/postgresql/data'
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: api
@@ -24,7 +22,10 @@ services:
       - '8081:8081'
     environment:
       DATABASE_URL: postgres://postgres:password@postgres:5432/api?sslmode=disable
-    depends_on:
-      - postgres
-volumes:
-  db_volume:
+  github_scraper:
+    build:
+      context: ../github_scraper/
+      dockerfile: docker/dev.Dockerfile
+    environment:
+      DB_URL: 'postgres://postgres:password@postgres:5432/api'
+    env_file: ../github_scraper/.env
