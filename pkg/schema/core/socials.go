@@ -63,7 +63,7 @@ var SocialsType = graphql.NewObject(
 					}, nil
 				},
 			},
-			"dockerHub": &graphql.Field{
+			"dockerhub": &graphql.Field{
 				Description: "My personal docker images",
 				Type:        socialMediaAccountType,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
@@ -118,7 +118,7 @@ var SocialsType = graphql.NewObject(
 					}, nil
 				},
 			},
-			"productHunt": &graphql.Field{
+			"producthunt": &graphql.Field{
 				Description: "Big projects",
 				Type:        socialMediaAccountType,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
