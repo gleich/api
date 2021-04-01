@@ -22,6 +22,10 @@ var socialMediaAccountType = graphql.NewObject(
 				Description: "Description of the account",
 				Type:        graphql.String,
 			},
+			"name": &graphql.Field{
+				Description: "Name for the website/service",
+				Type:        graphql.String,
+			},
 		},
 	},
 )
@@ -31,102 +35,92 @@ const noDescription = "n/a"
 
 // A social media account
 type socialMediaAccount struct {
-	Url         string `graphql:"url"`
+	URL         string `graphql:"url"`
 	Username    string `graphql:"username"`
 	Description string `graphql:"description"`
+	Name        string `graphql:"name"`
+}
+
+var socials = []socialMediaAccount{
+	{
+		URL:         "https://twitter.com/MattGleich",
+		Username:    "MattGleich",
+		Description: "Home of my crappy tweets/retweets",
+		Name:        "twitter",
+	},
+	{
+		URL:         "https://github.com/Matt-Gleich",
+		Username:    "Matt-Gleich",
+		Description: "All of my open-source and personal work",
+		Name:        "github",
+	},
+	{
+		URL:         "https://hub.docker.com/u/mattgleich",
+		Username:    "mattgleich",
+		Description: "Personal docker images",
+		Name:        "dockerhub",
+	},
+	{
+		URL:         "https://www.linkedin.com/in/matthew-gleich",
+		Username:    "matthew-gleich",
+		Description: noDescription,
+		Name:        "linkedin",
+	},
+	{
+		URL:         "https://www.strava.com/athletes/30124266",
+		Username:    "30124266",
+		Description: "Running and cycling",
+		Name:        "strava",
+	},
+	{
+		URL:         "https://wakatime.com/@Matthew_Gleich",
+		Username:    "Matthew_Gleich",
+		Description: "Programming statistics",
+		Name:        "wakatime",
+	},
+	{
+		URL:         "https://www.reddit.com/user/MGleich",
+		Username:    "MGleich",
+		Description: noDescription,
+		Name:        "reddit",
+	},
+	{
+		URL:         "https://www.producthunt.com/@mattgleich",
+		Username:    "mattgleich",
+		Description: "Big projects",
+		Name:        "producthunt",
+	},
 }
 
 var SocialsType = graphql.NewObject(
 	graphql.ObjectConfig{
-		Description: "Social Media accounts",
-		Name:        "Socials",
+		Name: "Query",
 		Fields: graphql.Fields{
-			"twitter": &graphql.Field{
-				Description: "Home of my crappy tweets/retweets",
+			"account": &graphql.Field{
 				Type:        socialMediaAccountType,
+				Description: "Get a social media account by name",
+				Args: graphql.FieldConfigArgument{
+					"name": &graphql.ArgumentConfig{
+						Type: graphql.String,
+					},
+				},
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return socialMediaAccount{
-						Url:         "https://twitter.com/MattGleich",
-						Username:    "MattGleich",
-						Description: "Home of my crappy tweets/retweets",
-					}, nil
+					name, ok := p.Args["name"].(string)
+					if ok {
+						for _, social := range socials {
+							if name == social.Name {
+								return social, nil
+							}
+						}
+					}
+					return nil, nil
 				},
 			},
-			"github": &graphql.Field{
-				Description: "All my open-source and personal work",
-				Type:        socialMediaAccountType,
+			"accounts": &graphql.Field{
+				Type:        graphql.NewList(socialMediaAccountType),
+				Description: "Get all social media accounts",
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return socialMediaAccount{
-						Url:         "https://github.com/Matt-Gleich",
-						Username:    "Matt-Gleich",
-						Description: "All of my open-source and personal work",
-					}, nil
-				},
-			},
-			"dockerhub": &graphql.Field{
-				Description: "My personal docker images",
-				Type:        socialMediaAccountType,
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return socialMediaAccount{
-						Url:         "https://hub.docker.com/u/mattgleich",
-						Username:    "mattgleich",
-						Description: "Personal docker images",
-					}, nil
-				},
-			},
-			"linkedin": &graphql.Field{
-				Description: noDescription,
-				Type:        socialMediaAccountType,
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return socialMediaAccount{
-						Url:         "https://www.linkedin.com/in/matthew-gleich",
-						Username:    "matthew-gleich",
-						Description: noDescription,
-					}, nil
-				},
-			},
-			"strava": &graphql.Field{
-				Description: "Running and cycling",
-				Type:        socialMediaAccountType,
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return socialMediaAccount{
-						Url:         "https://www.strava.com/athletes/30124266",
-						Username:    "30124266",
-						Description: "Running and cycling",
-					}, nil
-				},
-			},
-			"wakatime": &graphql.Field{
-				Description: "Programming statistics",
-				Type:        socialMediaAccountType,
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return socialMediaAccount{
-						Url:         "https://wakatime.com/@Matthew_Gleich",
-						Username:    "Matthew_Gleich",
-						Description: "Programming statistics",
-					}, nil
-				},
-			},
-			"reddit": &graphql.Field{
-				Description: noDescription,
-				Type:        socialMediaAccountType,
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return socialMediaAccount{
-						Url:         "https://www.reddit.com/user/MGleich",
-						Username:    "MGleich",
-						Description: noDescription,
-					}, nil
-				},
-			},
-			"producthunt": &graphql.Field{
-				Description: "Big projects",
-				Type:        socialMediaAccountType,
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return socialMediaAccount{
-						Url:         "https://www.producthunt.com/@mattgleich",
-						Username:    "mattgleich",
-						Description: "Big projects",
-					}, nil
+					return socials, nil
 				},
 			},
 		},

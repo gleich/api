@@ -19,7 +19,7 @@ var Fields = graphql.Fields{
 		Resolve:     util.NoResolve,
 	},
 	"socials": &graphql.Field{
-		Description: "Social Media Accounts",
+		Description: "A social media account by name",
 		Type:        graphql.NewNonNull(core.SocialsType),
 		Resolve:     util.NoResolve,
 	},
