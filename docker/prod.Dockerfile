@@ -17,6 +17,7 @@ RUN go build -o api ./cmd/api
 # hadolint ignore=DL3006,DL3007
 FROM alpine:latest
 
+WORKDIR /
 COPY --from=builder /usr/src/app/api .
 
 CMD ["./api"]
