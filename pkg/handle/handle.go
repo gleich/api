@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/Matt-Gleich/lumber"
+	"github.com/gleich/lumber"
 	"github.com/didip/tollbooth"
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"

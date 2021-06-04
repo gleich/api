@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
       - name: Build & Push Image
         run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u Matt-Gleich --password-stdin
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u gleich --password-stdin
           docker build -f docker/prod.Dockerfile -t ghcr.io/matt-gleich/api .
           docker push ghcr.io/matt-gleich/api
       - name: Deploy to Caprover

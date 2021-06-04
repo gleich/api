@@ -1,7 +1,7 @@
 package schema
 
 import (
-	"github.com/Matt-Gleich/lumber"
+	"github.com/gleich/lumber"
 	"github.com/graphql-go/graphql"
 )
 

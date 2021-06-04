@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/Matt-Gleich/api/pkg/db"
-	"github.com/Matt-Gleich/api/pkg/handle"
-	"github.com/Matt-Gleich/api/pkg/schema"
-	"github.com/Matt-Gleich/lumber"
+	"github.com/gleich/api/pkg/db"
+	"github.com/gleich/api/pkg/handle"
+	"github.com/gleich/api/pkg/schema"
+	"github.com/gleich/lumber"
 )
 
 func main() {

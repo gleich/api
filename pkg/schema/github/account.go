@@ -3,7 +3,7 @@ package github
 import (
 	"fmt"
 
-	"github.com/Matt-Gleich/api/pkg/db"
+	"github.com/gleich/api/pkg/db"
 	"github.com/graphql-go/graphql"
 )
 

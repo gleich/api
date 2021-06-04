@@ -50,7 +50,7 @@ var socials = []socialMediaAccount{
 	},
 	{
 		URL:         "https://github.com/gleich",
-		Username:    "Matt-Gleich",
+		Username:    "gleich",
 		Description: "All of my open-source and personal work",
 		Name:        "github",
 	},
