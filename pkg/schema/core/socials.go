@@ -49,7 +49,7 @@ var socials = []socialMediaAccount{
 		Name:        "twitter",
 	},
 	{
-		URL:         "https://github.com/Matt-Gleich",
+		URL:         "https://github.com/gleich",
 		Username:    "Matt-Gleich",
 		Description: "All of my open-source and personal work",
 		Name:        "github",
