@@ -5,7 +5,7 @@ go 1.15
 require (
 	github.com/didip/tollbooth v4.0.2+incompatible
 	github.com/fatih/color v1.12.0 // indirect
-	github.com/gleich/lumber v1.1.3 // indirect
+	github.com/gleich/lumber v1.1.3
 	github.com/graphql-go/graphql v0.7.9
 	github.com/graphql-go/handler v0.2.3
 	github.com/lib/pq v1.9.0
