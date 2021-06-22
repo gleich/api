@@ -61,7 +61,7 @@ var socials = []socialMediaAccount{
 		Name:        "dockerhub",
 	},
 	{
-		URL:         "https://www.linkedin.com/in/matthew-gleich",
+		URL:         "https://www.linkedin.com/in/matt-gleich",
 		Username:    "matthew-gleich",
 		Description: noDescription,
 		Name:        "linkedin",
