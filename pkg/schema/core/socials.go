@@ -43,8 +43,8 @@ type socialMediaAccount struct {
 
 var socials = []socialMediaAccount{
 	{
-		URL:         "https://twitter.com/matthewgleich",
-		Username:    "matthewgleich",
+		URL:         "https://twitter.com/matt_gleich",
+		Username:    "matt_gleich",
 		Description: "Home of my crappy tweets/retweets",
 		Name:        "twitter",
 	},
