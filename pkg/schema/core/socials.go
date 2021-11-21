@@ -79,12 +79,6 @@ var socials = []socialMediaAccount{
 		Name:        "wakatime",
 	},
 	{
-		URL:         "https://www.reddit.com/user/MGleich",
-		Username:    "MGleich",
-		Description: noDescription,
-		Name:        "reddit",
-	},
-	{
 		URL:         "https://www.producthunt.com/@mattgleich",
 		Username:    "mattgleich",
 		Description: "Big projects",
