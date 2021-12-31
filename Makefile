@@ -50,13 +50,12 @@ test-in-docker: build-docker-dev-test
 
 dev-start:
 	docker-compose up -d postgres
-	docker-compose up -d pgweb
 	docker-compose up -d github_scraper
 	docker-compose up api
 
 dev-reset:
 	docker-compose down
-	docker system prune -a
+	docker system prune -af
 
 
 ##########

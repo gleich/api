@@ -1,8 +1,6 @@
 package github
 
 import (
-	"fmt"
-
 	"github.com/gleich/api/pkg/db"
 	"github.com/graphql-go/graphql"
 )
@@ -16,90 +14,90 @@ var AccountType = graphql.NewObject(
 				Description: "Followers for my account",
 				Type:        graphql.Int,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					var followers int
-					err := db.DB.QueryRow(fmt.Sprintf("SELECT followers FROM %v;", accountTable)).Scan(&followers)
-					return followers, err
+					var account db.Account
+					db.DB.First(&account, 1)
+					return account.Followers, nil
 				},
 			},
 			"email": &graphql.Field{
 				Description: "Email for my account",
 				Type:        graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					var email string
-					err := db.DB.QueryRow(fmt.Sprintf("SELECT email FROM %v;", accountTable)).Scan(&email)
-					return email, err
+					var account db.Account
+					db.DB.First(&account, 1)
+					return account.Email, nil
 				},
 			},
 			"username": &graphql.Field{
 				Description: "Username for my account",
 				Type:        graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					var username string
-					err := db.DB.QueryRow(fmt.Sprintf("SELECT username FROM %v;", accountTable)).Scan(&username)
-					return username, err
+					var account db.Account
+					db.DB.First(&account, 1)
+					return account.Username, nil
 				},
 			},
 			"repos": &graphql.Field{
 				Description: "Repositories in my account",
 				Type:        graphql.Int,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					var repos int
-					err := db.DB.QueryRow(fmt.Sprintf("SELECT repos FROM %v;", accountTable)).Scan(&repos)
-					return repos, err
+					var account db.Account
+					db.DB.First(&account, 1)
+					return account.Repos, nil
 				},
 			},
 			"contributions": &graphql.Field{
 				Description: "Number of contributions I've made in the last year",
 				Type:        graphql.Int,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					var contributions int
-					err := db.DB.QueryRow(fmt.Sprintf("SELECT contributions FROM %v;", accountTable)).Scan(&contributions)
-					return contributions, err
+					var account db.Account
+					db.DB.First(&account, 1)
+					return account.Contributions, nil
 				},
 			},
 			"hireable": &graphql.Field{
 				Description: "If I am hireable",
 				Type:        graphql.Boolean,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					var hireable bool
-					err := db.DB.QueryRow(fmt.Sprintf("SELECT hireable FROM %v;", accountTable)).Scan(&hireable)
-					return hireable, err
+					var account db.Account
+					db.DB.First(&account, 1)
+					return account.Hireable, nil
 				},
 			},
 			"location": &graphql.Field{
 				Description: "Where am I!?!?",
 				Type:        graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					var location string
-					err := db.DB.QueryRow(fmt.Sprintf("SELECT location FROM %v;", accountTable)).Scan(&location)
-					return location, err
+					var account db.Account
+					db.DB.First(&account, 1)
+					return account.Location, nil
 				},
 			},
 			"organizations": &graphql.Field{
 				Description: "Number of organizations I am apart of",
 				Type:        graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					var organizations string
-					err := db.DB.QueryRow(fmt.Sprintf("SELECT organizations FROM %v;", accountTable)).Scan(&organizations)
-					return organizations, err
+					var account db.Account
+					db.DB.First(&account, 1)
+					return account.Organizations, nil
 				},
 			},
 			"website": &graphql.Field{
 				Description: "Link to my website",
 				Type:        graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					var website string
-					err := db.DB.QueryRow(fmt.Sprintf("SELECT website FROM %v;", accountTable)).Scan(&website)
-					return website, err
+					var account db.Account
+					db.DB.First(&account, 1)
+					return account.Website, nil
 				},
 			},
 			"company": &graphql.Field{
 				Description: "The company I am currently apart of.",
 				Type:        graphql.String,
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					var company string
-					err := db.DB.QueryRow(fmt.Sprintf("SELECT company FROM %v;", accountTable)).Scan(&company)
-					return company, err
+					var account db.Account
+					db.DB.First(&account, 1)
+					return account.Company, nil
 				},
 			},
 		},

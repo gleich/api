@@ -1,27 +1,26 @@
 package db
 
 import (
-	"database/sql"
 	"fmt"
 	"net/url"
 	"os"
 	"strings"
 
 	"github.com/gleich/lumber"
-	_ "github.com/lib/pq"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
-// Database
-var DB *sql.DB
+var DB *gorm.DB
 
-// Connect to the database
-func Connect() {
+func Connect() error {
 	dbURL, err := url.Parse(os.Getenv("DB_URL"))
-	lumber.Fatal(err, "Failed to get postgresql url")
+	if err != nil {
+		lumber.Fatal(err, "Failed to")
+	}
 	password, _ := dbURL.User.Password()
 
-	// Getting database info and validating it
-	postgresInfo := fmt.Sprintf(
+	dns := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
 		dbURL.Hostname(),
 		dbURL.User.Username(),
@@ -29,12 +28,10 @@ func Connect() {
 		strings.TrimPrefix(dbURL.Path, "/"),
 		dbURL.Port(),
 	)
-	DB, err = sql.Open("postgres", postgresInfo)
-	lumber.Fatal(err, "Failed to validate to postgres info:", postgresInfo)
-
-	// Verifying connection to database
-	err = DB.Ping()
-	lumber.Fatal(err, "Failed to connect to database")
-
-	lumber.Info("Connected to database")
+	DB, err = gorm.Open(postgres.Open(dns), &gorm.Config{})
+	if err != nil {
+		return err
+	}
+	lumber.Success("Connected to database")
+	return nil
 }
