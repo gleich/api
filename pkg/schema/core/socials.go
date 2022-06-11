@@ -84,6 +84,12 @@ var socials = []socialMediaAccount{
 		Description: "Big projects",
 		Name:        "producthunt",
 	},
+	{
+		URL:         "https://www.instagram.com/mattglei.ch/",
+		Username:    "mattglei.ch",
+		Description: "Photos",
+		Name:        "instagram",
+	},
 }
 
 var SocialsType = graphql.NewObject(
